@@ -2,7 +2,9 @@ package com.mycompany.formationspring.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Pokemon {
@@ -23,12 +25,13 @@ public class Pokemon {
     @Column(nullable = false)
     private String picture;
 
-    @Column(nullable = false)
-    private String types;
+    @ElementCollection
+    @CollectionTable(name = "pokemon_types", joinColumns = @JoinColumn(name = "pokemon_id"))
+    @Column(name = "type", nullable = false)
+    private List<String> types;
 
     @Column(nullable = false)
     private Date created;
-
     public Long getId() {
         return id;
     }
@@ -69,11 +72,11 @@ public class Pokemon {
         this.picture = picture;
     }
 
-    public String getTypes() {
+    public List<String> getTypes() {
         return types;
     }
 
-    public void setTypes(String types) {
+    public void setTypes(List<String> types) {
         this.types = types;
     }
 
@@ -84,4 +87,8 @@ public class Pokemon {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+
+
+
 }
