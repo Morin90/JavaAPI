@@ -39,4 +39,11 @@ public class PokemonController {
     public void deletePokemon(@PathVariable Long id) {
         pokemonService.deletePokemon(id);
     }
+    @GetMapping("/search")
+    public List<Pokemon> searchPokemons(@RequestParam String term) {
+        if (term.length() <= 1) {
+            return List.of();
+        }
+        return pokemonService.searchPokemonsByName(term);
+    }
 }

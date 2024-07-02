@@ -17,6 +17,7 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/h2")).permitAll()
                         //permission pour ceux qui ont au moins un rôle de défini
                         .requestMatchers(new AntPathRequestMatcher("/api/user/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/pokemons/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/admin/**")).hasRole("ADMIN")
 
                         .anyRequest().permitAll() // permettre toutes les autres requêtes (à ajuster selon les besoins)

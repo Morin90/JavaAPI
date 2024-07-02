@@ -27,4 +27,8 @@ public class PokemonService {
     public void deletePokemon(Long id) {
         PokemonRepository.deleteById(id);
     }
+
+    public List<Pokemon> searchPokemonsByName(String name) {
+        return PokemonRepository.findByNameContainingIgnoreCase(name);
+    }
 }
